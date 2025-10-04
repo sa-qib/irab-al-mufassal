@@ -3,17 +3,17 @@
    ========================== */
    @font-face {
     font-family: 'QuranicSurah';
-    src: url('../public/fonts/sura_names.ttf') format('truetype');
+    src: url('../fonts/sura_names.ttf') format('truetype');
   }  
   
   @font-face {
     font-family: 'NotoNaskh';
-    src: url('../public/fonts/NotoNaskhArabic-Regular.ttf') format('truetype');
+    src: url('../fonts/NotoNaskhArabic-Regular.ttf') format('truetype');
   }
   
   @font-face {
     font-family: 'AlTarikh';
-    src: url('../public/fonts/AlTarikh.ttc') format('truetype');
+    src: url('../fonts/AlTarikh.ttc') format('truetype');
   }
   
   /* ==========================

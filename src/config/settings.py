@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from signal import default_int_handler
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,13 +22,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-jcbejp!#r!_pnmcvz5and-w5mcubw)#*6x*@#&(8mwsufy_-yb'
+
+# SECRET_KEY = 'django-insecure-jcbejp!#r!_pnmcvz5and-w5mcubw)#*6x*@#&(8mwsufy_-yb'
+SECRET_KEY = config("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = config("DJANGO_DEBUG", cast=bool)
+print("DEBUG", DEBUG, type(DEBUG))
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = [
+    ".railway.app" #irabalmufassal.railway.app
+]
+if DEBUG:
+    ALLOWED_HOSTS +=[
+        "127.0.0.1",
+        "localhost"
+    ]
 
 # Application definition
 
@@ -47,6 +59,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -88,6 +101,22 @@ DATABASES = {
 }
 
 
+CONN_MAX_AGE = config("CONN_MAX_AGE", cast=int, default=30)
+DATABASE_URL = config("DATABASE_URL", cast=str)
+print("DATABASE_URL:", repr(DATABASE_URL))
+
+
+if DATABASE_URL is not None:
+    import dj_database_url
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=CONN_MAX_AGE,
+            conn_health_checks=True
+        )
+    }
+
+
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
@@ -124,9 +153,18 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STORAGES = {
+    # ...
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

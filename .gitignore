@@ -15,7 +15,7 @@ venv/
 .mypy_cache/
 irabalmufassal.code-workspace
 db.sqlite3
-
+staticfiles/
 
 
 # Byte-compiled / optim
