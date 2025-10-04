@@ -1,0 +1,22 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{% block title %}I'rab Al-Mufassal{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+</head>
+<body class="bg-base-100">
+  {% block navbar %}{% endblock %}
+  {% block drawers %}{% endblock %}
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  {% include "base/footer.html" %}
+
+  <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

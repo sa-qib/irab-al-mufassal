@@ -1,0 +1,93 @@
+/* ==========================
+   Font Definitions
+   ========================== */
+   @font-face {
+    font-family: 'QuranicSurah';
+    src: url('../public/fonts/sura_names.ttf') format('truetype');
+  }  
+  
+  @font-face {
+    font-family: 'NotoNaskh';
+    src: url('../public/fonts/NotoNaskhArabic-Regular.ttf') format('truetype');
+  }
+  
+  @font-face {
+    font-family: 'AlTarikh';
+    src: url('../public/fonts/AlTarikh.ttc') format('truetype');
+  }
+  
+  /* ==========================
+     Arabic Body Text
+     ========================== */
+  .noto-text {
+    font-family: 'NotoNaskh', serif;
+    direction: rtl;
+    unicode-bidi: embed;
+    text-align: center;
+    line-height: 1.4;
+    font-size: 4rem;
+  }
+  
+  /* Small descriptive text with Noto */
+  .noto-text-small {
+    font-family: 'altarikh', 'NotoNaskh', serif;
+    font-size: 0.5rem;
+    line-height: 1.4;
+    margin-top: 0.5rem;
+    display: block;
+    clear: left;
+  }
+  
+  /* ==========================
+     AlTarikh Arabic Text
+     ========================== */
+  .altarikh-text {
+    font-family: 'altarikh', serif;
+    direction: rtl;
+    unicode-bidi: embed;
+    text-align: center;
+    line-height: 1.4;
+    font-size: 4rem;
+  }
+  .altarikh-noto-text {
+    font-family: 'altarikh', 'NotoNaskh', serif;
+    direction: rtl;
+    unicode-bidi: embed;
+    text-align: center;
+    line-height: 1.4;
+    font-size: 2rem;
+  }
+  
+  /* ==========================
+     Quranic Surah Glyphs
+     ========================== */
+  .quranic-font {
+    font-family: 'QuranicSurah', serif;
+    font-size: 36px;
+    line-height: 2;
+    vertical-align: middle;
+    text-align: center;
+  }
+  
+
+
+  /* Custom heading style for Arabic span */
+.altarikh-heading {
+  display: inline-block;
+  font-family: 'AlTarikh', 'Noto Naskh Arabic', serif;
+
+  font-size: 1.8em;     /* relative to parent font-size instead of fixed rem */
+  font-weight: 900;
+  line-height: 1.2;
+  vertical-align: middle;
+  letter-spacing: -0.02em;
+  
+
+  font-feature-settings: "calt", "liga", "kern";
+
+  text-shadow:
+    0.5px 0 currentColor,
+   -0.5px 0 currentColor,
+    0 0.5px currentColor,
+    0 -0.5px currentColor;
+}

@@ -1,0 +1,65 @@
+        <!-- ✅ Left Drawer -->
+        <div class="drawer">
+            <input id="left-drawer" type="checkbox" class="drawer-toggle" />
+            <div class="drawer-side z-50">
+                <label for="left-drawer" class="drawer-overlay"></label>
+                <div class="w-72 min-h-screen bg-base-100 text-base-content overflow-y-auto">
+                    <div class="sticky top-0 bg-base-100 flex justify-between px-4 py-3 border-b">
+                        <h2 class="font-bold text-lg">Surah List</h2>
+                        <label for="left-drawer" class="cursor-pointer text-xl">✕</label>
+                    </div>
+                    <ul class="menu w-72 min-h-screen bg-base-100 text-base-content overflow-y-auto">
+                        <li><a>1. Al-Fatiha</a></li>
+                        <li><a>2. Al-Baqarah</a></li>
+                        <!-- ... -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ✅ Right Drawer -->
+        <div class="drawer drawer-end">
+            <input id="right-drawer" type="checkbox" class="drawer-toggle" />
+            <div class="drawer-side z-50">
+                <label for="right-drawer" class="drawer-overlay"></label>
+                <div class="p-4 w-80 min-h-screen bg-base-100 text-base-content">
+
+                    <!-- Header -->
+                    <div class="flex justify-between mb-4 border-b pb-2">
+                        <h2 class="font-bold text-lg">Settings</h2>
+                        <label for="right-drawer" class="cursor-pointer text-xl">✕</label>
+                    </div>
+
+                    <!-- 🔎 Search -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold mb-2">Search</label>
+                        <input type="text" placeholder="Search..." class="input input-bordered w-full" />
+                    </div>
+
+                    <!-- 🎨 Theme Selector -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold mb-2">Theme</label>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="setTheme('light')" class="btn btn-sm">Light</button>
+                            <button onclick="setTheme('retro')" class="btn btn-sm">Retro</button>
+                            <button onclick="setTheme('sunset')" class="btn btn-sm">Sunset</button>
+                            <button onclick="setTheme('dark')" class="btn btn-sm">Dark</button>
+                        </div>
+                    </div>
+
+                    <!-- 🔠 Font Size Controls -->
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Font Size</label>
+                        <div class="flex items-center gap-2">
+                            <button onclick="changeFontSize(-1)" class="btn btn-sm">A-</button>
+                            <input id="fontSizeInput" type="number" min="16" value="16"
+                                class="input input-input-sm w-16" />
+
+                            <button onclick="changeFontSize(1)" class="btn btn-sm">A+</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
