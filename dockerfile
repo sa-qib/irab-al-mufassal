@@ -32,7 +32,7 @@ RUN pip install -r /tmp/requirements.txt
 COPY ./src /code
 
 # Set Django project name
-ARG PROJ_NAME="irabalmufassal"
+ARG PROJ_NAME="config"
 
 # Create runtime script
 RUN printf "#!/bin/bash\n" > ./paracord_runner.sh && \
