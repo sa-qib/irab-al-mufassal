@@ -32,7 +32,7 @@ DEBUG = config("DJANGO_DEBUG", cast=bool)
 print("DEBUG", DEBUG, type(DEBUG))
 
 ALLOWED_HOSTS = [
-    ".railway.app" #irabalmufassal.railway.app
+    ".onrender.com" #irabalmufassal.railway.app
 ]
 if DEBUG:
     ALLOWED_HOSTS +=[
