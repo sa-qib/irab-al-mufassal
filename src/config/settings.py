@@ -29,7 +29,6 @@ SECRET_KEY = config("DJANGO_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 DEBUG = config("DJANGO_DEBUG", cast=bool)
-print("DEBUG", DEBUG, type(DEBUG))
 
 ALLOWED_HOSTS = [
     ".onrender.com" #irabalmufassal.railway.app
@@ -103,7 +102,6 @@ DATABASES = {
 
 CONN_MAX_AGE = config("CONN_MAX_AGE", cast=int, default=30)
 DATABASE_URL = config("DATABASE_URL", cast=str)
-print("DATABASE_URL:", repr(DATABASE_URL))
 
 
 if DATABASE_URL is not None:

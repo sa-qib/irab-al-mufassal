@@ -48,6 +48,8 @@
     text-align: center;
     line-height: 1.4;
     font-size: 4rem;
+    margin-top: 3rem;
+    margin-bottom: 0;
   }
   .altarikh-noto-text {
     font-family: 'altarikh', 'NotoNaskh', serif;
@@ -76,7 +78,7 @@
   display: inline-block;
   font-family: 'AlTarikh', 'Noto Naskh Arabic', serif;
 
-  font-size: 1.8em;     /* relative to parent font-size instead of fixed rem */
+  font-size: 1.2em;     /* relative to parent font-size instead of fixed rem */
   font-weight: 900;
   line-height: 1.2;
   vertical-align: middle;

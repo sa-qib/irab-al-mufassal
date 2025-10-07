@@ -22,5 +22,7 @@ from irab import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home_page, name="home"),
-    path('surah', views.surah_page, name="surah")
+    path('surah', views.surah_page, name="surah"),
+    path('test', views.test_page, name="test"),
+    
 ]
