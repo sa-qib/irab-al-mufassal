@@ -17,6 +17,8 @@ irabalmufassal.code-workspace
 db.sqlite3
 staticfiles/
 
+test.html
+test2.html
 
 # Byte-compiled / optim
 

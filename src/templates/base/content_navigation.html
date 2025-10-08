@@ -1,10 +1,11 @@
+
 <!-- content navigation section -->
 <section class="mt-8 mb-16">
     <div class="max-w-6xl mx-auto px-4 ">
         <h2 class="text-3xl font-bold mb-8 text-center">All Surahs</h2>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-
+            {% for key, value in data.items %}
             <!-- Surah Card -->
             <a href="{% url 'surah' %}"
                 class="group w-full border border-transparent hover:border-primary transition duration-300 p-6 flex items-center justify-between bg-base-100 shadow-sm rounded-md hover:shadow-md">
@@ -14,75 +15,25 @@
                     <!-- Surah Number -->
                     <div
                         class="w-12 h-12 flex items-center justify-center rounded-full border-2 border-primary text-sm font-bold text-primary bg-base-200 group-hover:bg-primary group-hover:text-base-100 transition duration-300">
-                        1
+                        {{ key }}
                     </div>
                     <div>
-                        <div class="font-semibold text-lg group-hover:text-primary transition duration-300">Bismillah
+                        <div class="font-semibold text-lg group-hover:text-primary transition duration-300">{{value.en_name }}
                         </div>
-                        <div class="text-xs text-gray-500 group-hover:text-primary/70 transition duration-300">in the
-                            name of
-                            Allah</div>
+                        <div class="text-xs text-gray-500 group-hover:text-primary/70 transition duration-300">
+                            {{ value.translatedName }}
+                        </div>
                     </div>
                 </div>
 
                 <!-- Right: Arabic -->
                 <div class="text-right">
-                    <div class="font-semibold text-xl group-hover:text-primary transition duration-300">﷽</div>
-                    <div class="text-xs text-gray-500 group-hover:text-primary/70 transition duration-300">0</div>
+                    <div class="font-semibold text-xl group-hover:text-primary transition duration-300">{{ value.ar_name }}</div>
+                    <div class="text-xs text-gray-500 group-hover:text-primary/70 transition duration-300">{{ value.versesCount }} Ayah{{ value.versesCount|pluralize:"s" }}</div>
                 </div>
             </a>
-
-            <!-- Surah 2 -->
-            <a href="#"
-                class="group w-full border border-transparent hover:border-primary transition duration-300 p-6 flex items-center justify-between bg-base-100 shadow-sm rounded-md hover:shadow-md">
-
-                <!-- Left: Number + English -->
-                <div class="flex items-center gap-4">
-                    <!-- Surah Number -->
-                    <div
-                        class="w-12 h-12 flex items-center justify-center rounded-full border-2 border-primary text-sm font-bold text-primary bg-base-200 group-hover:bg-primary group-hover:text-base-100 transition duration-300">
-                        1
-                    </div>
-                    <div>
-                        <div class="font-semibold text-lg group-hover:text-primary transition duration-300">Al-Fatiha
-                        </div>
-                        <div class="text-xs text-gray-500 group-hover:text-primary/70 transition duration-300">The
-                            Opening</div>
-                    </div>
-                </div>
-
-                <!-- Right: Arabic -->
-                <div class="text-right">
-                    <div class="font-semibold text-xl group-hover:text-primary transition duration-300">الفاتحة</div>
-                    <div class="text-xs text-gray-500 group-hover:text-primary/70 transition duration-300">7 Ayahs</div>
-                </div>
-            </a>
-
-            <!-- Surah 3 -->
-            <a href="#"
-                class="group w-full border border-transparent hover:border-primary transition duration-300 p-6 flex items-center justify-between bg-base-100 shadow-sm rounded-md hover:shadow-md">
-
-                <!-- Left: Number + English -->
-                <div class="flex items-center gap-4">
-                    <!-- Surah Number -->
-                    <div
-                        class="w-12 h-12 flex items-center justify-center rounded-full border-2 border-primary text-sm font-bold text-primary bg-base-200 group-hover:bg-primary group-hover:text-base-100 transition duration-300">
-                        1
-                    </div>
-                    <div>
-                        <div class="font-semibold text-lg group-hover:text-primary transition duration-300">Al-Fatiha
-                        </div>
-                        <div class="text-xs text-gray-500 group-hover:text-primary/70 transition duration-300">The
-                            Opening</div>
-                    </div>
-                </div>
-
-                <!-- Right: Arabic -->
-                <div class="text-right">
-                    <div class="font-semibold text-xl group-hover:text-primary transition duration-300">الفاتحة</div>
-                    <div class="text-xs text-gray-500 group-hover:text-primary/70 transition duration-300">7 Ayahs</div>
-                </div>
-            </a>
+            {% endfor %}
         </div>
     </div>
 </section>
+
