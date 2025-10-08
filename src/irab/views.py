@@ -2,28 +2,15 @@ from django.shortcuts import render
 from django.http import Http404
 from pathlib import Path
 import json
-from collections import defaultdict
+from irab.models import Surah
 
 BASE = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE / "json_data"
 surah_metadata = BASE / "data/surah_metadata.json"
 
 def home_page(request):
-    # context =defaultdict()
-    # surah_names = defaultdict(list)
-    # if DATA_DIR.is_dir():
-    #     for file in sorted(DATA_DIR.glob("*.json")):
-    #         if "-" in file.stem:
-    #             parts = file.stem.split("-")
-    #             if len(parts) >= 3:
-    #                 surah_name = "-".join(parts[2:])
-    #             else:
-    #                 surah_name = "-".join(parts[1:])
-    #         context["surah_name"].append(surah_name)
-                    
-    with open(surah_metadata, mode="r", encoding="utf-8") as file:
-        data = json.load(file)
-    context = {"data": data}
+    ordered_objects = Surah.objects.order_by('surah_id')
+    context = {"surahs": ordered_objects}
     return render(request, "pages/home.html", context)
 
 def surah_page(request):
