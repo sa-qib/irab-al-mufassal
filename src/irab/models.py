@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 # Create your models here.
 
@@ -10,6 +11,7 @@ class Surah(models.Model):
     revelation_place = models.CharField(max_length=10,  choices=[("makkah", "Makkah"), ("madinah", "Madinah")])
     verses_count = models.IntegerField()
     
+    
     def __str__(self):
         return f"{self.id} - {self.en_name}"
     
@@ -20,8 +22,10 @@ class Ayah(models.Model):
     ayah_number = models.IntegerField()
     ayah_text = models.TextField()
     
+    
     def __str__(self):
-        return f"{self.surah.id} - {self.ayah}"
+        # return f"{self.surah.id}:{self.ayah_number} - {self.ayah_text[:30]}"
+        return f"{self.surah.en_name} : {self.ayah_number}"
     
     
 class AyahPart(models.Model):
@@ -31,4 +35,4 @@ class AyahPart(models.Model):
 
     
     def __str__(self):
-        return f"{self.part} - ({self.description})"
+        return f"{self.ayah} - ({self.part})"

@@ -2,9 +2,9 @@
    Font Definitions
    ========================== */
    @font-face {
-    font-family: 'QuranicSurah';
+    font-family: 'SurahSymbols';
     src: url('../fonts/sura_names.ttf') format('truetype');
-  }  
+  } 
   
   @font-face {
     font-family: 'NotoNaskh';
@@ -51,6 +51,7 @@
     margin-top: 1rem;
     margin-bottom: 0;
   }
+  
   .altarikh-noto-text {
     font-family: 'altarikh', 'NotoNaskh', serif;
     direction: rtl;
@@ -60,18 +61,6 @@
     font-size: 2rem;
   }
   
-  /* ==========================
-     Quranic Surah Glyphs
-     ========================== */
-  .quranic-font {
-    font-family: 'QuranicSurah', serif;
-    font-size: 36px;
-    line-height: 2;
-    vertical-align: middle;
-    text-align: center;
-  }
-  
-
 
   /* Custom heading style for Arabic span */
 .altarikh-heading {
@@ -92,4 +81,21 @@
    -0.5px 0 currentColor,
     0 0.5px currentColor,
     0 -0.5px currentColor;
+}
+
+
+.surah-glyph {
+  font-family: 'SurahSymbols', serif; /* Your custom glyph font */
+  /* font-weight: 600;                   Semi-bold for prominence */
+  font-size: 1.4rem;                  /* Slightly bigger than base text */
+                    /* Tight line height for compactness */                    /* Dark color for readability */
+
+  /* To align nicely and prevent overflow */
+  white-space: nowrap;             
+  /* overflow: hidden; */
+  text-overflow: ellipsis;
+
+  /* Add some breathing space */
+  /* margin-bottom: 0.25rem; */
+  /* user-select: none;  Prevent accidental text selection on glyphs */
 }

@@ -5,7 +5,7 @@
         <h2 class="text-3xl font-bold mb-8 text-center">All Surahs</h2>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {% for surah in surahs %}
+            {% for item in surah_data %}
             <!-- Surah Card -->
             <a href="{% url 'surah' %}"
                 class="group w-full border border-transparent hover:border-primary transition duration-300 p-6 flex items-center justify-between bg-base-100 shadow-sm rounded-md hover:shadow-md">
@@ -15,21 +15,30 @@
                     <!-- Surah Number -->
                     <div
                         class="w-12 h-12 flex items-center justify-center rounded-full border-2 border-primary text-sm font-bold text-primary bg-base-200 group-hover:bg-primary group-hover:text-base-100 transition duration-300">
-                        {{ surah.surah_id }}
+                        {{ item.surah.surah_id }}
                     </div>
                     <div>
-                        <div class="font-semibold text-lg group-hover:text-primary transition duration-300">{{ surah.en_name }}
+                        <div class="font-semibold text-lg group-hover:text-primary transition duration-300">{{ item.surah.en_name.title }}
                         </div>
                         <div class="text-xs text-gray-500 group-hover:text-primary/70 transition duration-300">
-                            {{ surah.translated_name }}
+                            {{ item.surah.translated_name }}
                         </div>
                     </div>
                 </div>
 
                 <!-- Right: Arabic -->
                 <div class="text-right">
-                    <div class="font-semibold text-xl group-hover:text-primary transition duration-300">{{ surah.ar_name }}</div>
-                    <div class="text-xs text-gray-500 group-hover:text-primary/70 transition duration-300">{{ surah.verses_count }} Ayah{{ surah.verses_count|pluralize:"s" }}</div>
+                    <div class="surah-glyph font-semibold text-xl group-hover:text-primary transition duration-300">
+                        {% if item.surah.surah_id == 0 %}
+                        {{ item.surah.ar_name }}
+                        {% else %}
+                        {{ item.glyph }}
+                        {% endif %}
+                    
+                    </div>
+                    <div class="text-sm text-gray-500 group-hover:text-primary/70 transition duration-300">
+                        {{ item.surah.verses_count }} Ayah{{ item.surah.verses_count|pluralize }}
+                    </div>
                 </div>
             </a>
             {% endfor %}

@@ -1,51 +1,63 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 from pathlib import Path
-import json
 from irab.models import Surah
+from fontTools.ttLib import TTFont
+from django.conf import settings
 
-BASE = Path(__file__).resolve().parent.parent
-DATA_DIR = BASE / "json_data"
-surah_metadata = BASE / "data/surah_metadata.json"
+BASE_DIR = Path(settings.BASE_DIR)
+DATA_DIR = BASE_DIR / "json_data"
+surah_metadata = BASE_DIR / "data/surah_metadata.json"
+font_path = BASE_DIR / 'static/fonts/sura_names.ttf'
+
+
+def get_surah_glyphs(ttf_path):
+    font = TTFont(ttf_path)
+    glyphs = []
+    for table in font['cmap'].tables:
+        for code in sorted(table.cmap.keys()):
+            if code >= 0xE000:
+                glyphs.append(chr(code))
+    return glyphs
+
 
 def home_page(request):
-    ordered_objects = Surah.objects.order_by('surah_id')
-    context = {"surahs": ordered_objects}
+    surahs = Surah.objects.order_by("surah_id")
+    glyphs = get_surah_glyphs(font_path)  # path to your font file
+
+    surah_data = []
+    for idx, surah in enumerate(surahs):
+        # Fallback if not enough glyphs
+        glyph = glyphs[idx] if idx < len(glyphs) else None
+
+        if glyph == '\ue000':
+            display_text = surah.ar_name  # Use Arabic name for first entry
+        else:
+            display_text = glyph
+
+        surah_data.append({
+            "surah": surah,
+            "glyph": display_text
+        })
+        context = {
+            "surah_data": surah_data
+        }
     return render(request, "pages/home.html", context)
+
+
 
 def surah_page(request):
     return render(request, "pages/surah.html")
 
 
 
-def test_page(request, *args, **kwargs):
-    with open(surah_metadata, mode="r", encoding="utf-8") as file:
-        data = json.load(file)
-    context = {"data": data}
-    return render(request, "test2.html", context)
 
-
-
-# def test_surah(request, identifier):
-#     identifier = identifier.strip().lower()
-
-#     # Normalize numeric identifiers like "1", "01", "001"
-#     if identifier.isdigit():
-#         identifier = str(int(identifier)).zfill(3)
-        
-#     # Try to find file that matches either number or name
-#     matched_file = None
-#     for file in DATA_DIR.glob("*.json"):
-#         name = file.stem.lower()
-#         if identifier in name or name.startswith(identifier):
-#             matched_file = file
-#             break
-        
-#     if not matched_file:
-#         raise Http404("Surah not found")
-
-#     # Load JSON data
-#     with open(matched_file, "r", encoding="utf-8") as f:
-#         surah_data = json.load(f)
-
-#     return render(request, "surah_detail.html", {"surah_data": surah_data})
+def test_page(request,identifier, *args, **kwargs):
+    if identifier.isdigit():
+        # If identifier is digits only, treat as surah_number
+        surah = get_object_or_404(Surah, surah_id=int(identifier))
+    else:
+        # Otherwise treat as slug / en_name
+        surah = get_object_or_404(Surah, en_name=identifier)
+    return render(request, "test.html", {"surah": surah})
+    
