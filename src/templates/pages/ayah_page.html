@@ -12,6 +12,59 @@
 
 {% block content %}
 
+<div class="flex flex-col min-h-screen">
+    <!-- Spacer for navbar -->
+    <div class="h-16"></div>
+  
+    <!-- Main -->
+    <main class="flex-1 flex justify-center px-4 py-10">
+      <div dir="rtl" class="max-w-3xl w-full leading-loose">
+  
+        <!-- Surah Name -->
+        <div class="text-center mb-8">
+          <h2 class="text-lg font-semibold text-base-content/70">
+            سورة {{ surah.ar_name }}
+          </h2>
+          <div class="w-24 h-[2px] bg-base-300 mx-auto mt-3 rounded-full"></div>
+        </div>
+  
+        <!-- Ayah Text -->
+        <article>
+          <h1 class="altarikh-noto-text text-5xl font-semibold text-center pt-6 pb-10 text-base-content">
+            {{ ayah.ayah_text }}
+          </h1>
+  
+          <!-- Ayah Parts -->
+          {% for part in ayah.parts.all %}
+          <div class="mt-6">
+            <p class="altarikh-noto-text text-base-content/80 leading-relaxed relative">
+              <span class="altarikh-heading text-lg font-semibold text-base-content mr-2">
+                {{ part.part }}:
+              </span>
+              {{ part.description }}
+            </p>
+          </div>
+          {% endfor %}
+        </article>
+  
+        <!-- Divider -->
+        <div class="w-full h-[2px] bg-base-300 rounded-full my-12 mb-10"></div>
+  
+        <!-- Buttons -->
+        <div class="flex justify-center gap-4">
+          <a href="{% url 'surah_detail' identifier=surah.en_name %}" class="btn btn-outline">
+            Read full surah
+          </a>
+  
 
+          <a href="{% url 'surah_detail_url' identifier=surah.en_name ayah_number=scroll_to_ayah %}" class="btn btn-primary">
+            Continue
+          </a>
+        </div>
+  
+      </div>
+    </main>
+  </div>
+  
 
 {% endblock %}

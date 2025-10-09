@@ -60,5 +60,17 @@ def surah_page(request,identifier,ayah_number=None, *args, **kwargs):
     
 
 
-def ayah_page(request, *args, **kwargs):
-    return render(request, "pages/ayah_page.html")
+def ayah_page(request,identifier,ayah_number):
+    if identifier.isdigit():
+        # If identifier is digits only, treat as surah_number
+        surah = get_object_or_404(Surah, surah_id=int(identifier))
+    else:
+        # Otherwise treat as slug / en_name
+        surah = get_object_or_404(Surah, en_name=identifier)
+    
+    ayah = get_object_or_404(surah.ayahs, ayah_number=ayah_number)
+    return render(request, "pages/ayah_page.html", {
+       "surah": surah,
+        "ayah": ayah,
+        "scroll_to_ayah": ayah_number
+    })
