@@ -1,6 +1,6 @@
 {% extends "base/base.html" %}
 
-{% block title %}Surah - {{block.super}} {% endblock %}
+{% block title %}Surah {{surah.en_name}} - 1-{{surah.verses_count}} {{block.super}} {% endblock %}
 
 {% block navbar %}
 {% include "base/navbar_surah.html" %}
@@ -12,4 +12,21 @@
 
 {% block content %}
 {% include "base/main_content.html" %}
+
+
+{% if scroll_to_ayah %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const el = document.getElementById("ayah-{{ scroll_to_ayah }}");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      el.classList.add("ayah-highlight");
+      setTimeout(() => {
+        el.classList.remove("ayah-highlight");
+      }, 2000);
+    }
+  });
+</script>
+
+{% endif %}
 {% endblock %}

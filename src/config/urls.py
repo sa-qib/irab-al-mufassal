@@ -22,9 +22,9 @@ from irab import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home_page, name="home"),
-    path('surah', views.surah_page, name="surah"),
-    # path('test', views.test_page, name="test"),
-    path('test/<slug:identifier>/', views.test_page, name='test'),
-    # path('surah/<str:identifier>/', views.test_page, name="surah_detail"),
+    path('ayah_page', views.ayah_page, name="ayah_page"),
+    path('<str:identifier>/', views.surah_page, name="surah_detail"),
+    path('<str:identifier>/<int:ayah_number>/', views.surah_page, name="surah_detail_url"),
+    # path('<str:identifier>/<int:ayah_number>/', views.surah_page, name="surah_detail_url"),
     
 ]

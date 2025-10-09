@@ -7,7 +7,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {% for item in surah_data %}
             <!-- Surah Card -->
-            <a href="{% url 'surah' %}"
+            <a href="{% url 'surah_detail' identifier=item.surah.en_name %}"
                 class="group w-full border border-transparent hover:border-primary transition duration-300 p-6 flex items-center justify-between bg-base-100 shadow-sm rounded-md hover:shadow-md">
 
                 <!-- Left: Number + English -->
