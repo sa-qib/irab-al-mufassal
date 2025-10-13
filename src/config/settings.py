@@ -32,6 +32,7 @@ DEBUG = config("DJANGO_DEBUG", cast=bool)
 
 ALLOWED_HOSTS = [
     ".onrender.com", #irabalmufassal.railway.app
+
 ]
 if DEBUG:
     ALLOWED_HOSTS +=[
@@ -42,6 +43,9 @@ if DEBUG:
 # Application definition
 
 INSTALLED_APPS = [
+    # dashboard theme
+    "jazzmin",
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

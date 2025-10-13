@@ -4,7 +4,7 @@ from django.views.decorators.http import require_GET
 from django.db.models import Q
 import re
 
-
+@require_GET
 def search(request):
     query= request.GET.get("q", "").strip().lower()
     
