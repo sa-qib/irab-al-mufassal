@@ -36,8 +36,10 @@
 
                     <!-- 🔎 Search -->
                     <div class="mb-6">
+                        <form method="GET" action="{% url 'search' %}">
                         <label class="block text-sm font-semibold mb-2">Search</label>
-                        <input type="text" placeholder="Search..." class="input input-bordered w-full" />
+                        <input type="text" name="q" placeholder="e.g. ‘2 255’ or ‘Al-Baqarah:255’" class="input input-bordered w-full" />
+                    </form>
                     </div>
 
                     <!-- 🎨 Theme Selector -->
