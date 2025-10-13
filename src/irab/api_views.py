@@ -11,6 +11,9 @@ def search(request):
     if not query:
         return redirect("home")
     
+    # Sanitize input
+    query = re.sub(r'[^\w\s:-]', '', query)  # remove punctuation except colon/dash
+    query = re.sub(r'\s+', ' ', query).strip()  # collapse multiple spaces
     
     pattern = r"^(?P<surah>[a-zA-Z\-]+|\d+)(?:[\s:](?P<ayah>\d+))?$"
     match = re.match(pattern, query)

@@ -32,7 +32,6 @@ DEBUG = config("DJANGO_DEBUG", cast=bool)
 
 ALLOWED_HOSTS = [
     ".onrender.com", #irabalmufassal.railway.app
-    
 ]
 if DEBUG:
     ALLOWED_HOSTS +=[
