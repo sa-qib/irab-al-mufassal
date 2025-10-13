@@ -1,66 +1,54 @@
 <div class="flex flex-col min-h-screen">
-    <!-- Spacer for navbar -->
-    <div class="h-16"></div>
-  
-    <!-- Main -->
-  
-    <main class="flex-1 flex justify-center px-4 py-10">
-      <div dir="rtl" class="max-w-3xl w-full leading-loose">
+  <!-- Spacer for navbar -->
+  <div class="h-16"></div>
 
-        {% if surah.ayahs.all %}
-        <!-- Surah -->
-        <section class="mb-8">
+  <!-- Main -->
 
-          <!-- Main Heading -->
-          <h1 class="altarikh-text text-3xl font-bold text-center pt-6 pb-3 text-base-content">
-            إعرابة {{ surah.ar_name }}
-          </h1>
-  
-          <!-- Ayahs -->
-          <div class="space-y-12">
-           
-            {% for ayah in surah.ayahs.all %}
-            <article id="ayah-{{ ayah.ayah_number }}" class="relative">
-              <!-- Ayah Heading -->
-              <h2 class="altarikh-noto-text text-4xl font-semibold text-center pt-3 pb-6 text-base-content">
-                {{ ayah.ayah_text }}
-              </h2>
-  
-              <!-- Ayah Parts -->
-              {% for part in ayah.parts.all %}
-              <div class="mt-4">
-                <p class="altarikh-noto-text text-base-content/80 leading-relaxed relative">
-                  <span class="altarikh-heading text-lg font-semibold text-base-content mr-2">
-                    {{ part.part }}:
-                  </span>
-                  {{ part.description }}
-                </p>
-              </div>
-              {% endfor %}
-  
-              <!-- Divider (after parts, before next ayah) -->
-              {% if not forloop.last %}
-              <div class="flex justify-center mt-10">
-                <div class="w-24 h-[2px] bg-base-300 rounded-full"></div>
-              </div>
-              {% endif %}
-            </article>
+
+  <main class="flex-1 flex justify-center px-4 py-10">
+    <div dir="rtl" class="max-w-3xl w-full leading-loose">
+
+      <!-- Surah -->
+      <section class="mb-8">
+
+        <!-- Main Heading -->
+        <h1 class="altarikh-text text-3xl font-bold text-center pt-6 pb-3 text-base-content">
+          إعرابة {{ surah.ar_name }}
+        </h1>
+
+        <!-- Ayahs -->
+        <div class="space-y-12">
+
+          {% for ayah in surah.ayahs.all %}
+          <article id="ayah-{{ ayah.ayah_number }}" class="relative">
+            <!-- Ayah Heading -->
+            <h2 class="altarikh-noto-text text-4xl font-semibold text-center pt-3 pb-6 text-base-content">
+              {{ ayah.ayah_text }}
+            </h2>
+
+            <!-- Ayah Parts -->
+            {% for part in ayah.parts.all %}
+            <div class="mt-4">
+              <p class="altarikh-noto-text text-base-content/80 leading-relaxed relative">
+                <span class="altarikh-heading text-lg font-semibold text-base-content mr-2">
+                  {{ part.part }}:
+                </span>
+                {{ part.description }}
+              </p>
+            </div>
             {% endfor %}
-          </div>
-        </section>
 
-        {% else %}
-        <!-- Coming Soon Message -->
-        <div class="flex flex-col items-center justify-center flex-1 text-center py-20">
-          <h1 class="text-2xl font-semibold text-base-content mb-3">
-            This surah is currently being added
-          </h1>
-          <p class="text-base-content/70 text-lg">
-            Coming soon, In shā’ Allāh 
-          </p>
+            <!-- Divider (after parts, before next ayah) -->
+            {% if not forloop.last %}
+            <div class="flex justify-center mt-10">
+              <div class="w-24 h-[2px] bg-base-300 rounded-full"></div>
+            </div>
+            {% endif %}
+          </article>
+          {% endfor %}
         </div>
-      {% endif %}
-      </div>
-    </main>
-    
-  </div>
+      </section>
+    </div>
+  </main>
+
+</div>

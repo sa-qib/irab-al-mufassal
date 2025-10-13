@@ -1,9 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render,redirect, get_object_or_404
 from django.http import Http404
+
 from pathlib import Path
 from irab.models import Surah
 from fontTools.ttLib import TTFont
 from django.conf import settings
+
 
 BASE_DIR = Path(settings.BASE_DIR)
 DATA_DIR = BASE_DIR / "json_data"
@@ -46,31 +48,80 @@ def home_page(request):
 
 
 
-def surah_page(request,identifier,ayah_number=None, *args, **kwargs):
+def surah_page(request, identifier, ayah_number=None, *args, **kwargs):
+    # Fetch all surahs for sidebar/navigation
+    surahs = Surah.objects.all().order_by('surah_id')
+
+    # Determine if identifier is a number or name
     if identifier.isdigit():
-        # If identifier is digits only, treat as surah_number
-        surah = get_object_or_404(Surah, surah_id=int(identifier))
-    else:
-        # Otherwise treat as slug / en_name
-        surah = get_object_or_404(Surah, en_name=identifier)
+        surah = Surah.objects.filter(surah_id=int(identifier)).first()
+        if not surah:
+            raise Http404("Surah not found")
+        # Redirect to canonical name-based URL
+        return redirect('surah_detail', identifier=surah.en_name.lower())
+
+    # Otherwise, fetch by English name
+    surah = Surah.objects.filter(en_name=identifier.lower()).first()
+    if not surah:
+        raise Http404("Surah not found")
+
+    # 🕓 If surah exists but has no ayahs, show 'coming soon'
+    if not surah.ayahs.exists():
+        return render(request, "pages/surah.html", {
+            "surahs": surahs,
+            "surah": surah,
+            "coming_soon": True
+        })
+
+    # ✅ Normal render
     return render(request, "pages/surah.html", {
+        "surahs": surahs,
         "surah": surah,
         "scroll_to_ayah": ayah_number
     })
     
 
 
-def ayah_page(request,identifier,ayah_number):
+
+def ayah_page(request, identifier, ayah_number):
+    # Get surah by ID or name
     if identifier.isdigit():
-        # If identifier is digits only, treat as surah_number
-        surah = get_object_or_404(Surah, surah_id=int(identifier))
+        surah = Surah.objects.filter(surah_id=int(identifier)).first()
     else:
-        # Otherwise treat as slug / en_name
-        surah = get_object_or_404(Surah, en_name=identifier)
-    
-    ayah = get_object_or_404(surah.ayahs, ayah_number=ayah_number)
+        surah = Surah.objects.filter(en_name=identifier).first()
+
+    if not surah:
+        raise Http404("Surah not found")
+
+    # If no ayahs yet → coming soon page
+    if not surah.ayahs.exists():
+        return render(request, "pages/surah.html", {
+            "surah": surah,
+            "coming_soon": True
+        })
+
+    # Validate ayah number range
+    try:
+        ayah_number = int(ayah_number)
+    except ValueError:
+        raise Http404("Invalid ayah number")
+
+    if ayah_number < 1 or ayah_number > surah.verses_count:
+        raise Http404("Ayah not found")
+
+    # Get ayah
+    ayah = surah.ayahs.filter(ayah_number=ayah_number).first()
+    if not ayah:
+        # If ayah doesn’t exist in DB (maybe not added yet)
+        raise Http404("Ayah not found")
+
+    # Render ayah page
     return render(request, "pages/ayah_page.html", {
-       "surah": surah,
+        "surah": surah,
         "ayah": ayah,
         "scroll_to_ayah": ayah_number
     })
+
+
+def custom_404_view(request, exception):
+    return render(request, "pages/404.html", status=404)

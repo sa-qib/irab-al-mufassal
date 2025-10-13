@@ -9,9 +9,12 @@
                         <label for="left-drawer" class="cursor-pointer text-xl">✕</label>
                     </div>
                     <ul class="menu w-72 min-h-screen bg-base-100 text-base-content overflow-y-auto">
-                        <li><a>1. Al-Fatiha</a></li>
-                        <li><a>2. Al-Baqarah</a></li>
-                        <!-- ... -->
+                        {% for surah in surahs %}
+                        <li><a href="{% url 'surah_detail' identifier=surah.en_name %}">
+                            {{surah.surah_id }}. {{ surah.en_name.title }}</a></li>
+                        
+                       {% endfor %}
+              
                     </ul>
                 </div>
             </div>

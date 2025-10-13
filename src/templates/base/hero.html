@@ -7,13 +7,22 @@
         <h1 class="text-6xl font-bold mb-10">I'rab Al Mufassal</h1>
 
         <!-- Search Box -->
-        <label class="input input-bordered flex items-center gap-3 rounded-full w-full h-16 w-15 mt-8 mb-8 px-6">
-          <svg class="w-6 h-6 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
-          </svg>
-          <input type="text" placeholder="Search the Quran..." class="grow text-lg" />
-        </label>
+        <div class="relative w-full mt-8 mb-8">
+          <form action="{% url 'search' %}" method="GET">
+            <label
+              class="input input-bordered flex items-center gap-3 rounded-full w-full h-16 w-16 px-6 mt-8 mb-8 px-6">
+              <svg class="w-6 h-6 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
+              </svg>
+              <input type="text" name="q" placeholder="e.g. ‘2 255’ or ‘Al-Baqarah:255’"
+                class="grow text-lg bg-transparent focus:outline-none" id="searchInput" />
+              <div id="inlineSuggestions"
+                class="absolute left-12 top-1/2 -translate-y-1/2 text-sm opacity-0 transition-all duration-300 ease-in-out text-base-content/60">
+              </div>
+            </label>
+          </form>
+        </div>
 
         <!-- Buttons -->
         <div class="flex justify-center gap-4">

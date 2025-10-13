@@ -15,15 +15,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from irab import views, api_views
 
-from irab import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home_page, name="home"),
-    path('<str:identifier>/', views.surah_page, name="surah_detail"),
-    path('<str:identifier>/scroll/<int:ayah_number>/', views.surah_page, name="surah_detail_url"),
-    path('<str:identifier>/<int:ayah_number>/', views.ayah_page, name="ayah_page"),
-    
+    path('', include('irab.urls')), 
 ]
+
+
+handler404 = "irab.views.custom_404_view"

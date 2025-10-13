@@ -27,16 +27,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
+# DEBUG = False
 DEBUG = config("DJANGO_DEBUG", cast=bool)
 
 ALLOWED_HOSTS = [
-    ".onrender.com" #irabalmufassal.railway.app
+    ".onrender.com", #irabalmufassal.railway.app
+    "127.0.0.1",
+    "localhost",
+    "*",
+    "::1"
 ]
 if DEBUG:
     ALLOWED_HOSTS +=[
         "127.0.0.1",
-        "localhost"
+        "localhost",
     ]
 
 # Application definition
