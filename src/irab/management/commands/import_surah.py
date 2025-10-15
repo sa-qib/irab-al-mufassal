@@ -44,12 +44,11 @@ class Command(BaseCommand):
                     defaults={"ayah_text": ayah_text}
                 )
 
-                if not created:
-                    # Update ayah_text if needed
-                    ayah.ayah_text = ayah_text
-                    ayah.save()
-                    # Optional: clear existing parts if re-importing
-                    ayah.parts.all().delete()
+                # 🧠 Skip if already imported and unchanged
+                if not created and ayah.ayah_text == ayah_text and ayah.parts.exists():
+                    self.stdout.write(f"⚠️ Skipping Ayah {ayah_number}, already imported.")
+                    continue
+
 
                 self.stdout.write(f"✅ Ayah {ayah_number}: {ayah_text[:40]}...")
 

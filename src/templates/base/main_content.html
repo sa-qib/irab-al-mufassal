@@ -1,3 +1,4 @@
+{% load arabic_digits %}
 <div class="flex flex-col min-h-screen">
   <!-- Spacer for navbar -->
   <div class="h-16"></div>
@@ -22,9 +23,12 @@
           {% for ayah in surah.ayahs.all %}
           <article id="ayah-{{ ayah.ayah_number }}" class="relative">
             <!-- Ayah Heading -->
-            <h2 class="altarikh-noto-text text-4xl font-semibold text-center pt-3 pb-6 text-base-content">
+
+            <h2 class="UthmaniHafs_text text-4xl font-semibold text-center pt-3 pb-6 mt-10 text-base-content">
               {{ ayah.ayah_text }}
+              <span>&#xFD3F;{{ ayah.ayah_number|to_arabic_digits }}&#xFD3E;</span>
             </h2>
+
 
             <!-- Ayah Parts -->
             {% for part in ayah.parts.all %}

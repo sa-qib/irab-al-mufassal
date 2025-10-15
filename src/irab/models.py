@@ -12,7 +12,7 @@ class Surah(models.Model):
     
     
     def __str__(self):
-        return f"{self.id} - {self.en_name}"
+        return f"ID: {self.id}\t-\tName: {self.en_name}"
     
     
     
@@ -23,8 +23,7 @@ class Ayah(models.Model):
     
     
     def __str__(self):
-        # return f"{self.surah.id}:{self.ayah_number} - {self.ayah_text[:30]}"
-        return f"{self.surah.en_name} : {self.ayah_number}"
+        return f"Name: {self.surah.en_name} : Ayah #:{self.ayah_number}"
     
     
 class AyahPart(models.Model):
@@ -34,4 +33,4 @@ class AyahPart(models.Model):
 
     
     def __str__(self):
-        return f"{self.ayah} - ({self.part})"
+        return f"Ayah: {self.ayah} - Part: ({self.part})"

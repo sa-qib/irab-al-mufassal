@@ -1,101 +1,117 @@
 /* ==========================
    Font Definitions
    ========================== */
-   @font-face {
-    font-family: 'SurahSymbols';
-    src: url('../fonts/sura_names.ttf') format('truetype');
-  } 
-  
-  @font-face {
-    font-family: 'NotoNaskh';
-    src: url('../fonts/NotoNaskhArabic-Regular.ttf') format('truetype');
-  }
-  
-  @font-face {
-    font-family: 'AlTarikh';
-    src: url('../fonts/AlTarikh.ttc') format('truetype');
-  }
-  
-  /* ==========================
+@font-face {
+font-family: 'UthmaniHafs';
+src: url('../fonts/KFGQPC_Uthman_Taha_Naskh_Regular.ttf') format('opentype');
+font-display: swap;
+}
+
+@font-face {
+  font-family: 'SurahSymbols';
+  src: url('../fonts/sura_names.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'NotoNaskh';
+  src: url('../fonts/NotoNaskhArabic-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'AlTarikh';
+  src: url('../fonts/AlTarikh.ttc') format('truetype');
+}
+
+/* ==========================
      Arabic Body Text
      ========================== */
-  .noto-text {
-    font-family: 'NotoNaskh', serif;
-    direction: rtl;
-    unicode-bidi: embed;
-    text-align: center;
-    line-height: 1.4;
-    font-size: 4rem;
-  }
-  
-  /* Small descriptive text with Noto */
-  .noto-text-small {
-    font-family: 'altarikh', 'NotoNaskh', serif;
-    font-size: 0.5rem;
-    line-height: 1.4;
-    margin-top: 0.5rem;
-    display: block;
-    clear: left;
-  }
-  
-  /* ==========================
+.noto-text {
+  font-family: 'NotoNaskh', serif;
+  direction: rtl;
+  unicode-bidi: embed;
+  text-align: center;
+  line-height: 1.4;
+  font-size: 4rem;
+}
+
+/* Small descriptive text with Noto */
+.noto-text-small {
+  font-family: 'altarikh', 'NotoNaskh', serif;
+  font-size: 0.5rem;
+  line-height: 1.4;
+  margin-top: 0.5rem;
+  display: block;
+  clear: left;
+}
+
+/* ==========================
      AlTarikh Arabic Text
      ========================== */
-  .altarikh-text {
-    font-family: 'altarikh', serif;
-    direction: rtl;
-    unicode-bidi: embed;
-    text-align: center;
-    line-height: 1.4;
-    font-size: 4rem;
-    margin-top: 1rem;
-    margin-bottom: 0;
-  }
-  
-  .altarikh-noto-text {
-    font-family: 'altarikh', 'NotoNaskh', serif;
-    direction: rtl;
-    unicode-bidi: embed;
-    text-align: center;
-    line-height: 1.4;
-    font-size: 2rem;
-  }
-  
+.altarikh-text {
+  font-family: 'altarikh', serif;
+  direction: rtl;
+  unicode-bidi: embed;
+  text-align: center;
+  line-height: 1.4;
+  font-size: 4rem;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
 
-  /* Custom heading style for Arabic span */
+.altarikh-noto-text {
+  font-family: 'altarikh', 'NotoNaskh', serif;
+  direction: rtl;
+  unicode-bidi: embed;
+  text-align: center;
+  line-height: 1.4;
+  font-size: 2rem;
+}
+
+
+/* Custom heading style for Arabic span */
 .altarikh-heading {
   display: inline-block;
   font-family: 'AlTarikh', 'Noto Naskh Arabic', serif;
 
-  font-size: 1.2em;     /* relative to parent font-size instead of fixed rem */
+  font-size: 1.2em;
+  /* relative to parent font-size instead of fixed rem */
   font-weight: 900;
   line-height: 1.2;
   vertical-align: middle;
   letter-spacing: -0.02em;
-  
+
 
   font-feature-settings: "calt", "liga", "kern";
 
   text-shadow:
     0.5px 0 currentColor,
-   -0.5px 0 currentColor,
+    -0.5px 0 currentColor,
     0 0.5px currentColor,
     0 -0.5px currentColor;
 }
 
 
 .surah-glyph {
-  font-family: 'SurahSymbols', serif; /* Your custom glyph font */
+  font-family: 'SurahSymbols', serif;
+  /* Your custom glyph font */
   /* font-weight: 600;                   Semi-bold for prominence */
-  font-size: 1.4rem;                  /* Slightly bigger than base text */
-                    /* Tight line height for compactness */                    /* Dark color for readability */
+  font-size: 1.4rem;
+  /* Slightly bigger than base text */
+  /* Tight line height for compactness */
+  /* Dark color for readability */
 
   /* To align nicely and prevent overflow */
-  white-space: nowrap;             
-  /* overflow: hidden; */
+  white-space: nowrap;
   text-overflow: ellipsis;
+}
 
-  /* Add some breathing space */
-  /* margin-bottom: 0.25rem; */
-  /* user-select: none;  Prevent accidental text selection on glyphs */
+
+
+.UthmaniHafs_text {
+  font-family:'altarikh', 'NotoNaskh', serif;
+  direction: rtl;
+  unicode-bidi: embed;
+  text-align: center;
+  line-height: 1.4;
+  font-size: 2rem;
 }

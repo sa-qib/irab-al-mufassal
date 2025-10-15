@@ -125,3 +125,5 @@ def ayah_page(request, identifier, ayah_number):
 
 def custom_404_view(request, exception):
     return render(request, "pages/404.html", status=404)
+
+
