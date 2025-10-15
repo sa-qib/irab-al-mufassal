@@ -20,7 +20,7 @@
         <!-- Ayahs -->
         <div class="space-y-12">
 
-          {% for ayah in surah.ayahs.all %}
+          {% for ayah in surah.ayahs.all|dictsort:"ayah_number" %}
           <article id="ayah-{{ ayah.ayah_number }}" class="relative">
             <!-- Ayah Heading -->
 
