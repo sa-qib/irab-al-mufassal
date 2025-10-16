@@ -1,0 +1,15 @@
+/* TEAM */
+Developer: Saqib Younis
+Website: https://irab-al-mufassal.onrender.com
+GitHub: https://github.com/sa-qib
+Twitter: https://twitter.com/yourusername
+
+/* SITE */
+Last Update: October 2025
+Standards: HTML5, CSS3, Django 5
+Components: TailwindCSS, DaisyUI
+Hosting: Render.com
+Language: Arabic, English
+
+/* THANKS */
+Built with ❤️ for I’rab Al-Mufassal readers.

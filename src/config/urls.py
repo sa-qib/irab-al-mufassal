@@ -38,6 +38,15 @@ urlpatterns = [
             content_type="text/plain"
             ),
         ),
+    
+    path(
+        "human.txt",
+        TemplateView.as_view(
+            template_name="human.txt",
+            content_type="text/plain"
+            ),
+        
+        ),
      path('sitemap.xml', sitemap, {'sitemaps': sitemaps_dict}, name='django.contrib.sitemaps.views.sitemap'),
 
 ]
