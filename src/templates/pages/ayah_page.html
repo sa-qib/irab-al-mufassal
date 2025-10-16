@@ -2,6 +2,28 @@
 
 {% extends "base/base.html" %}
 
+{% block meta %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SEO Meta -->
+<meta name="description" content="Read Ayah {{ ayah.ayah_number }} from Surah {{ surah.en_name }} with detailed I’rab and explanation.">
+<meta name="keywords" content="Quran, I’rab, {{ surah.en_name }}, Ayah {{ ayah.ayah_number }}, Arabic Grammar">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Ayah {{ ayah.ayah_number }} | {{ surah.en_name }} | I’rab Al-Mufassal">
+<meta property="og:description" content="Read Ayah {{ ayah.ayah_number }} from Surah {{ surah.en_name }}  with detailed I’rab and explanation.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:image" content="{{ request.build_absolute_uri }}static/images/og-image.png">
+
+<!-- Twitter/X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ayah {{ ayah.ayah_number }} | {{ surah.en_name }} | I’rab Al-Mufassal">
+<meta name="twitter:description" content="Read Ayah {{ ayah.ayah_number }} from Surah {{ surah.en_name }} with detailed I’rab and explanation.">
+<meta name="twitter:image" content="{{ request.build_absolute_uri }}static/images/og-image.png">
+{% endblock %}
+
 {% block title %}{{ surah.en_name }} {{ ayah.ayah_number }} - {{block.super}} {% endblock %}
 
 {% block navbar %}

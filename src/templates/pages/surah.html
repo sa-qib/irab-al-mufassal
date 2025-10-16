@@ -1,5 +1,34 @@
 {% extends "base/base.html" %}
 
+{% block meta %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SEO Meta -->
+<meta name="description"
+  content="Read and learn the I’rab of Surah {{ surah.en_name }} from the Quran in detail.">
+<meta name="keywords" content="Quran, I’rab, {{ surah.en_name }}, Arabic Grammar">
+
+<!-- Open Graph -->
+<meta property="og:title" content="{{ surah.en_name }} | I’rab Al-Mufassal">
+<meta property="og:description"
+  content="Read and learn the I’rab of Surah {{ surah.en_name }} from the Quran in detail.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:image" content="{{ request.build_absolute_uri }}static/images/og-image.png">
+
+<!-- Twitter/X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ surah.en_name }} | I’rab Al-Mufassal">
+<meta name="twitter:description"
+  content="Read and learn the I’rab of Surah {{ surah.en_name }} from the Quran in detail.">
+<meta name="twitter:image" content="{{ request.build_absolute_uri }}static/images/og-image.png">
+{% endblock %}
+
+
+
+
+
 {% block title %}Surah {{surah.en_name}} - 1-{{surah.verses_count}} {{block.super}} {% endblock %}
 
 {% block navbar %}
@@ -20,16 +49,16 @@
 <div class="flex flex-col min-h-screen">
   <!-- Spacer for navbar -->
   <div class="h-16"></div>
-<!-- Coming Soon Message -->
-<div class="flex flex-col items-center justify-center flex-1 text-center py-20">
-  <h1 class="text-2xl font-semibold text-base-content mb-3">
-    This surah is currently being added
-  </h1>
-  <p class="text-base-content/70 text-lg">
-    Coming soon, In shā’ Allāh
-  </p>
-</div>
-{% endif %}
+  <!-- Coming Soon Message -->
+  <div class="flex flex-col items-center justify-center flex-1 text-center py-20">
+    <h1 class="text-2xl font-semibold text-base-content mb-3">
+      This surah is currently being added
+    </h1>
+    <p class="text-base-content/70 text-lg">
+      Coming soon, In shā’ Allāh
+    </p>
+  </div>
+  {% endif %}
 </div>
 
 

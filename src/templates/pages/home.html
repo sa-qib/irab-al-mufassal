@@ -1,5 +1,29 @@
 {% extends "base/base.html" %}
 
+{% block meta %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SEO Meta -->
+<title>I’rab Al-Mufassal | Read & Learn Quran I’rab</title>
+<meta name="description" content="Explore the I’rab of all Surahs of the Quran in detail. Learn Arabic grammar and understand each verse clearly.">
+<meta name="keywords" content="Quran, I’rab, Arabic Grammar, Surahs, Islamic Learning">
+
+<!-- Open Graph -->
+<meta property="og:title" content="I’rab Al-Mufassal | Read & Learn Quran I’rab">
+<meta property="og:description" content="Explore the I’rab of all Surahs of the Quran in detail. Learn Arabic grammar and understand each verse clearly.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:image" content="{{ request.build_absolute_uri }}static/images/og-image.png">
+
+<!-- Twitter/X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="I’rab Al-Mufassal | Read & Learn Quran I’rab">
+<meta name="twitter:description" content="Explore the I’rab of all Surahs of the Quran in detail. Learn Arabic grammar and understand each verse clearly.">
+<meta name="twitter:image" content="{{ request.build_absolute_uri }}static/images/og-image.png">
+{% endblock %}
+
+
 {% block title %}Home - {{block.super}} {% endblock %}
 
 {% block navbar %}
