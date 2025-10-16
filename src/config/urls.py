@@ -17,7 +17,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
+from django.contrib.sitemaps.views import sitemap
+from irab.sitemap import StaticViewSitemap, SurahSitemap
 
+
+
+
+sitemaps_dict = {
+    'static': StaticViewSitemap,
+    'surah': SurahSitemap,
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,6 +38,8 @@ urlpatterns = [
             content_type="text/plain"
             ),
         ),
+     path('sitemap.xml', sitemap, {'sitemaps': sitemaps_dict}, name='django.contrib.sitemaps.views.sitemap'),
+
 ]
 
 

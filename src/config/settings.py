@@ -57,11 +57,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     # Third-party apps
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     
     # Custom apps
     'irab',
     
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
