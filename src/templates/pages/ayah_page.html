@@ -2,7 +2,7 @@
 
 {% extends "base/base.html" %}
 
-{% block title %}Surah - {{block.super}} {% endblock %}
+{% block title %}{{ surah.en_name }} {{ ayah.ayah_number }} - {{block.super}} {% endblock %}
 
 {% block navbar %}
 {% include "base/navbar_surah.html" %}

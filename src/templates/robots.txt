@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://irab-al-mufassal.onrender.com/sitemap.xml
