@@ -31,6 +31,7 @@ sitemaps_dict = {
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('irab.urls')), 
+    
     path(
         "robots.txt",
         TemplateView.as_view(
@@ -47,6 +48,7 @@ urlpatterns = [
             ),
         
         ),
+    path("google74f353b224464b5a.html", TemplateView.as_view(template_name="google74f353b224464b5a.html", content_type="text/plain")),
      path('sitemap.xml', sitemap, {'sitemaps': sitemaps_dict}, name='django.contrib.sitemaps.views.sitemap'),
 
 ]
