@@ -22,6 +22,23 @@
 <meta name="twitter:title" content="Ayah {{ ayah.ayah_number }} | {{ surah.en_name }} | I’rab Al-Mufassal">
 <meta name="twitter:description" content="Read Ayah {{ ayah.ayah_number }} from Surah {{ surah.en_name }} with detailed I’rab and explanation.">
 <meta name="twitter:image" content="{{ request.build_absolute_uri }}static/images/og-image.png">
+
+<!-- JSON-LD structured data -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Ayah {{ ayah.ayah_number }}",
+    "url": "{{ request.build_absolute_uri }}",
+    "description": "Read Ayah {{ ayah.ayah_number }} from Surah {{ surah.en_name }} with detailed I’rab and explanation.",
+    "isPartOf": {
+      "@type": "WebPage",
+      "name": "{{ surah.en_name }}",
+      "url": "{{ request.build_absolute_uri|slice:":-len(ayah.ayah_number|stringformat:"s") }}" 
+    }
+  }
+  </script>
+  
 {% endblock %}
 
 {% block title %}{{ surah.en_name }} {{ ayah.ayah_number }} - {{block.super}} {% endblock %}

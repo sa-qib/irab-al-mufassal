@@ -23,6 +23,28 @@
 <meta name="twitter:description"
   content="Read and learn the I’rab of Surah {{ surah.en_name }} from the Quran in detail.">
 <meta name="twitter:image" content="{{ request.build_absolute_uri }}static/images/og-image.png">
+
+<!-- JSON-LD structured data -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "{{ surah.en_name }}",
+    "url": "{{ request.build_absolute_uri }}",
+    "description": "Read and learn the I’rab of Surah {{ surah.en_name }} ({{ surah.translation }}) from the Quran in detail.",
+    "mainEntity": [
+      {% for ayah in ayahs %}
+      {
+        "@type": "CreativeWork",
+        "name": "Ayah {{ ayah.ayah_number }}",
+        "url": "{{ request.build_absolute_uri }}{{ ayah.ayah_number }}/"
+      }{% if not forloop.last %},{% endif %}
+      {% endfor %}
+    ]
+  }
+  </script>
+  
+
 {% endblock %}
 
 
