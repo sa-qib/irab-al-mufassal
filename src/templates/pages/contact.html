@@ -1,0 +1,77 @@
+{% extends "base/base.html" %}
+
+{% block navbar %}
+{% include "base/navbar_surah.html" %}
+{% endblock %}
+
+{% block drawers %}
+{% include "base/drawer_surah.html" %}
+{% endblock %}
+
+{% block content %}
+<section class="min-h-[calc(100vh-10rem)] flex flex-col items-center justify-center bg-base-200 px-3 py-20 mt-16">
+  <div class="w-full max-w-xl bg-base-100 border border-base-300 rounded-xl shadow-md p-8">
+    <h1 class="text-2xl font-semibold text-center mb-3">Contact Us</h1>
+    <p class="text-center text-sm text-base-content/70 mb-8">
+      Have a question or suggestion? Get in touch with us using the form below.
+    </p>
+
+    <form class="space-y-4 text-sm">
+      <!-- Name -->
+      <div>
+        <label class="label py-1">
+          <span class="label-text">Your Name</span>
+        </label>
+        <input
+          type="text"
+          placeholder="Enter your name"
+          class="input input-bordered input-sm w-full border-base-300 focus:border-primary focus:ring-2 focus:ring-primary/40 transition-all"
+        />
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label class="label py-1">
+          <span class="label-text">Email Address</span>
+        </label>
+        <input
+          type="email"
+          placeholder="you@email.com"
+          class="input input-bordered input-sm w-full border-base-300 focus:border-primary focus:ring-2 focus:ring-primary/40 transition-all"
+        />
+      </div>
+
+      <!-- Subject -->
+      <div>
+        <label class="label py-1">
+          <span class="label-text">Subject</span>
+        </label>
+        <input
+          type="text"
+          placeholder="Enter subject"
+          class="input input-bordered input-sm w-full border-base-300 focus:border-primary focus:ring-2 focus:ring-primary/40 transition-all"
+        />
+      </div>
+
+      <!-- Message -->
+      <div>
+        <label class="label py-1">
+          <span class="label-text">Message</span>
+        </label>
+        <textarea
+          class="textarea textarea-bordered textarea-sm w-full border-base-300 focus:border-primary focus:ring-2 focus:ring-primary/40 transition-all"
+          rows="5"
+          placeholder="Write your message here..."
+        ></textarea>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="pt-3">
+        <button type="button" class="btn btn-primary btn-sm w-full">
+          Send Message
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}

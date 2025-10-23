@@ -127,3 +127,11 @@ def custom_404_view(request, exception):
     return render(request, "pages/404.html", status=404)
 
 
+
+def contact_page(request, *args, **kwargs):
+    surahs = Surah.objects.all()
+    context = {
+        "surahs": surahs
+    }
+    
+    return render(request, "pages/contact.html", context)
